@@ -108,7 +108,7 @@ body {
 }
 
 .pokemon-sprite img {
-  width: 70px;
+  width: 130px;
   height: 100%;
   object-fit: cover;
 }
@@ -149,8 +149,8 @@ body {
   top: 72%;
   color: #5a5a5a;
   max-width: clamp(240px, 70vw, 420px);
-  font-size: clamp(0.2rem, 4vw, 1.5rem);
-
+  font-size: clamp(1.3rem, 4vw, 1.3rem);
+  line-height: 1;
   text-shadow: 1px 1px 0 #b5b5b5;   /* Bottom-right shadow */
 }
 
@@ -192,16 +192,17 @@ body {
     -1px 1px 0 #5a5a5a,  /* Bottom-left shadow */
     1px 1px 0 #5a5a5a;   /* Bottom-right shadow */
 }
+
 .type-icons {
   position: absolute; /* Position relative to the parent container */
-  top: 10%; /* Adjust vertical placement */
-  left: 50%; /* Adjust horizontal placement */
+  top: 27%; /* Adjust vertical placement */
+  left: 76.5%; /* Adjust horizontal placement */
   display: flex;
-
+  
 }
 
 .type-icon {
-  width: 50vw; /* Adjust size as needed */
-  height: 50vw;
-  margin-right: -160px;
+  width: clamp(48px, 15vw, 90px); /* Adjust size as needed */
+  height: clamp(48px, 15vw, 90px);
+  margin-right: -100%;
 }

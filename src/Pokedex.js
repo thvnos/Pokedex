@@ -111,7 +111,7 @@ function Pokedex() {
         <div className="pokemon-info-container">
           <div className="pokemon-sprite">
             <img
-              src={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}
+              src={pokemon.sprites.front_default}
               alt={pokemon.name}
             />
           </div>
