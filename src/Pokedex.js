@@ -54,88 +54,97 @@ function Pokedex() {
     }
   }
   
+  function PokemonTypeIcons({ types }) {
+    return (
+      <div className="type-icons">
+        {types.map((type) => (
+          <img
+            key={type.type.name}
+            src={`/types/${type.type.name}.png`} // Dynamically load type icon
+            alt={`${type.type.name} type`}
+            className="type-icon"
+          />
+        ))}
+      </div>
+    );
+  }
 
   return (
-    <div className="pokedex-container">
-      <h2 className="pokedex-title">Pokédex</h2>
-
-      {/* Search Input */}
-      <div className="search-wrapper">
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Enter Pokémon name or #"
-        value={search}
-        onChange={(e) => setSearch(e.target.value.toLowerCase())}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" && suggestions.length > 0) {
-            handleSelect(suggestions[0]); // Select the first suggestion on Enter
-          }
-        } }
-        onBlur={() => setTimeout(() => setSuggestions([]), 200)} // Hide suggestions on blur after a delay
-/>  
-
-        {/* Suggestions List */}
-        {suggestions.length > 0 && (
-          <ul className="suggestions-list">
-            {suggestions.map((name) => (
-              <li
-                key={name}
-                className="suggestion-item"
-                onClick={() => handleSelect(name)}
-              >
-                {name.charAt(0).toUpperCase() + name.slice(1)}
-              </li>
-            ))}
-          </ul>
-        )}
+    <div className="pokedex-grid-container">
+      <div className="pokedex-title">
+        <h2>Pokédex</h2>
       </div>
 
-      {/* Pokémon Info Window */}
+      <div className="search-container">
+        <div className="search-wrapper">
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Enter Pokémon name or #"
+            value={search}
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && suggestions.length > 0) {
+                handleSelect(suggestions[0]);
+              }
+            }}
+            onBlur={() => setTimeout(() => setSuggestions([]), 200)}
+          />
+
+          {suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((name) => (
+                <li
+                  key={name}
+                  className="suggestion-item"
+                  onClick={() => handleSelect(name)}
+                >
+                  {name.charAt(0).toUpperCase() + name.slice(1)}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+
       {pokemon && (
-  <div className="pokemon-info-container">
-    {/* Pokémon Sprite */}
-    <div className="pokemon-sprite">
-      <img
-        src={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}
-        alt={pokemon.name}
-      />
-    </div>
+        <div className="pokemon-info-container">
+          <div className="pokemon-sprite">
+            <img
+              src={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}
+              alt={pokemon.name}
+            />
+          </div>
 
-    {/* Pokémon Name */}
-    <div className="pokemon-name">
-      {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-      </div>
+          <div className="pokemon-details">
+            <div className="pokemon-name">
+              {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+            </div>
 
-    {/* Pokémon Dex Number */}
-    <div className="pokedex-number">
-      {pokemon.id.toString().padStart(3, "0")}
-    </div>
+            <div className="pokedex-number">
+              {pokemon.id.toString().padStart(3, "0")}
+            </div>
 
-    {/* Pokémon Species */}
-    <div className="pokemon-species">{pokemon.species}</div>
+            
+            <div className="pokemon-species">{pokemon.species}</div>
 
-    {/* Pokémon Description */}
-    <div className="pokemon-description">{pokemon.description}</div>
+            <div className="pokemon-stats">
+              <div className="pokemon-height">
+                <span>{`${Math.floor(pokemon.height / 3.048)}' ${Math.round((pokemon.height / 3.048 - Math.floor(pokemon.height / 3.048)) * 12)}"`}</span>
+              </div>
 
-    {/* Pokémon Stats */}
-    <div className="pokemon-stats">
+              <div className="pokemon-weight">
+                <span>{`${(pokemon.weight / 4.536).toFixed(1)} lbs. `}</span>
+              </div>
+            </div>
+          </div>
 
-      <div className="pokemon-height">
+          <div className="pokemon-description">{pokemon.description}</div>
+
+          <PokemonTypeIcons types={pokemon.types} />
+        </div>
         
-        <span>{`${Math.floor(pokemon.height / 3.048)}' ${Math.round((pokemon.height / 3.048 - Math.floor(pokemon.height / 3.048)) * 12)}"`}</span>
-      </div>
-
-    </div>
-
-      <div className="pokemon-weight">
-  
-        <span>{`${(pokemon.weight / 4.536).toFixed(1)} lbs. `}</span>
-      </div>
-    </div>
-  
-)}
-
+      )}
     </div>
   );
 }

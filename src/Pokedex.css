@@ -4,7 +4,9 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  font-family: "PokeFont"; /* Retro font style */
+  font-family: "PokeFont";
+  margin: 0;
+  padding: 0;
 }
 
 @font-face {
@@ -14,18 +16,32 @@ body {
   font-style: normal;
 }
 
-/* Pokédex Container */
-.pokedex-container {
-  text-align: center;
+/* Grid Container */
+.pokedex-grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: 20px;
   padding: 20px;
+  min-height: 100vh;
 }
 
 /* Title */
 .pokedex-title {
+  text-align: center;
+}
+
+.pokedex-title h2 {
   font-size: 24px;
   font-weight: bold;
   color: #ff0505;
   text-shadow: 2px 2px 3px #2a75bb;
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  justify-content: center;
 }
 
 /* Search Bar */
@@ -42,7 +58,6 @@ body {
   border: 2px solid #2a75bb;
   border-radius: 8px;
   outline: none;
-  margin-bottom: 10px;
 }
 
 /* Suggestions List */
@@ -72,92 +87,121 @@ body {
 
 /* Pokémon Info Container */
 .pokemon-info-container {
-  width: 60vw;
-  height: 45vh;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 4 / 3; /* Maintain the aspect ratio of your Pokedex image */
   background-image: url("blankpokedex.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
   margin: auto;
-  padding: 2%;
 }
 
-/* Pokémon Name */
-.pokemon-name {
-  position: absolute;
-  top: 13%;
-  left:60%;
-  font-size: 22px;
-}
-
-.pokedex-number{
-  position: absolute;
-  top: 14%;
-  left: 48%;
-  font-size: 20px;
-}
-/* Pokémon Species */
-.pokemon-species {
-  position: absolute;
-  top: 22%;
-  left: 65%;
-  font-size: 20px;
-  white-space: nowrap;
-}
-
-/* Pokémon Description */
-.pokemon-description {
-  top: 72%;
-  left: 8%;
-  position: absolute;
-  color: #222121;
-  max-width: 350px;
-  font-size: 3vw;
-  text-align: left;
-
-}
-
-/* Pokémon Footprint */
-.pokemon-footprint {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
-}
 
 /* Pokémon Sprite */
 .pokemon-sprite {
   position: absolute;
+  left: 11%; /* Adjust these percentages to position the sprite exactly where you want */
   top: 30%;
-  left: 11%;
+  width: 20%; /* Adjust size as needed */
 }
 
 .pokemon-sprite img {
-  width: 10vw;
-  height: auto;
+  width: 70px;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Pokémon Name */
+.pokemon-name {
+  position: absolute;
+  left: 60%; /* Adjust for exact placement */
+  top: 13%;
+  font-size: clamp(0.9rem, 4.5vw, 1.5rem);
+  color : #d6dede;
+}
+
+/* Pokémon Number */
+.pokedex-number {
+  position: absolute;
+  left: 48%; /* Adjust for exact placement */
+  top: 13.5%;
+  font-size: clamp(0.9rem, 4.5vw, 1.5rem);
+}
+
+/* Pokémon Species */
+.pokemon-species {
+  position: absolute;
+  right:5%; /* Adjust for exact placement */
+  top: 22%;
+  font-size: clamp(0.9rem, 4.5vw, 1.5rem);
+  text-align: right;
+  white-space: nowrap;
+  direction: rtl;
+}
+
+/* Pokémon Description */
+.pokemon-description {
+  position: absolute;
+  left: 8%; /* Adjust for exact placement */
+  top: 72%;
+  color: #5a5a5a;
+  max-width: clamp(240px, 70vw, 420px);
+  font-size: clamp(0.2rem, 4vw, 1.5rem);
+
+  text-shadow: 1px 1px 0 #b5b5b5;   /* Bottom-right shadow */
+}
+
+/* Pokémon Height */
+.pokemon-height {
+  position: absolute;
+  right:4%; /* Adjust for exact placement */
+  top: 46.5%;
+  text-align: right;
+  white-space: nowrap;
+  font-size: clamp(0.9rem, 4.5vw, 1.5rem);
+  color : #5a5a5a;
+  
 }
 
 /* Pokémon Weight */
 .pokemon-weight {
   position: absolute;
-  top: 56%; /* Adjust this value */
-  left: 87%; /* Adjust this value */
-  transform: translateX(-50%);
-  text-align: left;
-  font-size: 3vw;
-  color: #444;
-  display: flex;
+  right:4%; /* Adjust for exact placement */
+  top: 55%;
+  text-align: right;
   white-space: nowrap;
+  font-size: clamp(0.9rem, 4.5vw, 1.5rem);
+  color : #5a5a5a;
+ 
 }
 
-.pokemon-height {
-  position: absolute;
-  top: 47%; /* Adjust this value */
-  left: 89%; /* Adjust this value */
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 3vw;
-  color: #444;
+.pokemon-weight, .pokemon-height {
+  text-shadow:
+    
+  1px 1px 0 #b5b5b5;   /* Bottom-right shadow */
+}
+
+.pokemon-species, .pokemon-name, .pokedex-number {
+  color: white; /* Text color */
+  text-shadow:
+    -1px -1px 0 #5a5a5a, /* Top-left shadow */
+    1px -1px 0 #5a5a5a,  /* Top-right shadow */
+    -1px 1px 0 #5a5a5a,  /* Bottom-left shadow */
+    1px 1px 0 #5a5a5a;   /* Bottom-right shadow */
+}
+.type-icons {
+  position: absolute; /* Position relative to the parent container */
+  top: 10%; /* Adjust vertical placement */
+  left: 50%; /* Adjust horizontal placement */
   display: flex;
-  gap: 20px;
+
+}
+
+.type-icon {
+  width: 50vw; /* Adjust size as needed */
+  height: 50vw;
+  margin-right: -160px;
 }
