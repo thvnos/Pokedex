@@ -1,0 +1,163 @@
+/* General Styling */
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: "PokeFont"; /* Retro font style */
+}
+
+@font-face {
+  font-family: 'PokeFont'; 
+  src: url('./assets/pkmnfl.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Pokédex Container */
+.pokedex-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Title */
+.pokedex-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0505;
+  text-shadow: 2px 2px 3px #2a75bb;
+}
+
+/* Search Bar */
+.search-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.search-bar {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  text-align: center;
+  border: 2px solid #2a75bb;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+/* Suggestions List */
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: 1px solid gray;
+  position: absolute;
+  z-index: 1000;
+  width: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+.suggestion-item {
+  padding: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid lightgray;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Pokémon Info Container */
+.pokemon-info-container {
+  width: 60vw;
+  height: 45vh;
+  background-image: url("blankpokedex.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin: auto;
+  padding: 2%;
+}
+
+/* Pokémon Name */
+.pokemon-name {
+  position: absolute;
+  top: 13%;
+  left:60%;
+  font-size: 22px;
+}
+
+.pokedex-number{
+  position: absolute;
+  top: 14%;
+  left: 48%;
+  font-size: 20px;
+}
+/* Pokémon Species */
+.pokemon-species {
+  position: absolute;
+  top: 22%;
+  left: 65%;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+/* Pokémon Description */
+.pokemon-description {
+  top: 72%;
+  left: 8%;
+  position: absolute;
+  color: #222121;
+  max-width: 350px;
+  font-size: 3vw;
+  text-align: left;
+
+}
+
+/* Pokémon Footprint */
+.pokemon-footprint {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Pokémon Sprite */
+.pokemon-sprite {
+  position: absolute;
+  top: 30%;
+  left: 11%;
+}
+
+.pokemon-sprite img {
+  width: 10vw;
+  height: auto;
+}
+
+/* Pokémon Weight */
+.pokemon-weight {
+  position: absolute;
+  top: 56%; /* Adjust this value */
+  left: 87%; /* Adjust this value */
+  transform: translateX(-50%);
+  text-align: left;
+  font-size: 3vw;
+  color: #444;
+  display: flex;
+  white-space: nowrap;
+}
+
+.pokemon-height {
+  position: absolute;
+  top: 47%; /* Adjust this value */
+  left: 89%; /* Adjust this value */
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 3vw;
+  color: #444;
+  display: flex;
+  gap: 20px;
+}
